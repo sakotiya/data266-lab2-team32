@@ -1,0 +1,19 @@
+# data, weights, outputs (weights and images go to Hugging Face)
+data/
+outputs/
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.ckpt
+chroma_db/
+
+# secrets
+.env
+*.token
+
+# python / notebooks
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+.DS_Store
