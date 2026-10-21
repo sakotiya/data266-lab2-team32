@@ -1,6 +1,5 @@
-# data, weights, outputs (weights and images go to Hugging Face)
+# data and weights (weights and generated image sets go to Hugging Face)
 data/
-outputs/
 *.safetensors
 *.pt
 *.pth

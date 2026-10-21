@@ -8,6 +8,17 @@ Members: Shreya Akotiya, Zoheb Waghu
 | 2 | Diffusion fine-tuning (LoRA) | `notebooks/p2_finetune.ipynb` | `p2-v1.0` |
 | 3 | Multimodal multi-agent system | `notebooks/p3_agents.ipynb` | `p3-v1.0` |
 
+## Folders
+
+```
+notebooks/        executed notebooks for all parts (required by the brief)
+part1_rag/        src, eval, metrics, outputs, data
+part2_diffusion/  src, configs, eval, metrics, outputs, data
+part3_agents/     src, app, eval, metrics, outputs, test_images
+```
+
+`data/` folders are not committed.
+
 ## Setup
 
 ```bash
