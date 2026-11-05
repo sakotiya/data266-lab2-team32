@@ -1,0 +1,11 @@
+prompt_id,category,prompt,source
+OD01,out_of_domain,a red sports car parked on a wet city street at night,written by team
+OD02,out_of_domain,a lighthouse on a rocky coast during a storm,written by team
+OD03,out_of_domain,a cat sleeping on a stack of old books next to a window,written by team
+OD04,out_of_domain,a modern glass skyscraper reflecting the sunset,written by team
+OD05,out_of_domain,a bowl of fresh fruit on a wooden kitchen table,written by team
+CP01,compositional,"two ninjas standing back to back, one in red and one in blue",written by team
+CP02,compositional,a girl with pink hair holding a green umbrella next to a boy with a black cat,written by team
+CP03,compositional,a man with a sword on the left and a woman with a bow on the right,written by team
+CP04,compositional,"three people in a row: the left one wears a hat, the middle one wears glasses, the right one is smiling",written by team
+CP05,compositional,a small blue fox sitting on top of a big yellow car,written by team
