@@ -16,3 +16,6 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 .DS_Store
+
+# Part 2 local scratch (big files go to Hugging Face)
+part2_diffusion/outputs/_work*/

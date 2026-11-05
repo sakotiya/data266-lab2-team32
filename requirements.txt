@@ -1,1 +1,16 @@
 # Pinned versions (pkg==x.y.z), filled in as the parts are built
+
+# Part 2 - pinned from part2_diffusion/metrics/versions.txt after the Kaggle run
+# (torch, transformers, accelerate, datasets, numpy, pillow come with the Kaggle image)
+diffusers
+peft
+lpips
+torchmetrics
+torch-fidelity
+huggingface_hub
+datasets
+transformers
+torch
+pyyaml
+matplotlib
+pandas

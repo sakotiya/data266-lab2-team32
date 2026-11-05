@@ -29,7 +29,9 @@ All required work runs on one 16 GB GPU (Kaggle/Colab T4).
 
 ## How to run each part
 
-_To be filled in._
+- Part 1: _to be filled in._
+- Part 2: on a Kaggle T4, see [`part2_diffusion/README.md`](part2_diffusion/README.md) (setup, smoke run, full run, human evaluation).
+- Part 3: _to be filled in._
 
 ## Hosted APIs used
 
