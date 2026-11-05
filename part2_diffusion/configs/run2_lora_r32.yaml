@@ -1,0 +1,16 @@
+# Run 2: LoRA, rank 32. Everything else is the same as run 1, so rank is the only change.
+name: run2_lora_r32
+method: lora
+rank: 32
+lora_alpha: 32
+target_modules: [to_k, to_q, to_v, to_out.0]
+learning_rate: 1.0e-4
+lr_scheduler: constant
+warmup_steps: 0
+max_train_steps: 1500
+train_batch_size: 4
+gradient_checkpointing: true
+mixed_precision: fp16
+max_grad_norm: 1.0
+random_flip: true
+checkpoint_every: 500
