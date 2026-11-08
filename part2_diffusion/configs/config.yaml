@@ -1,0 +1,25 @@
+seed: 266
+base_model: stable-diffusion-v1-5/stable-diffusion-v1-5
+clip_model: openai/clip-vit-base-patch32
+dataset: lambdalabs/naruto-blip-captions
+resolution: 512
+test_fraction: 0.1
+near_duplicate_distance: 4    # dHash bits; at or below this two images count as the same picture
+
+# The two runs differ only in LoRA rank.
+runs:
+  run1_lora_r4: {rank: 4}
+  run2_lora_r32: {rank: 32}
+
+# Same training settings and step budget for both runs.
+train:
+  steps: 1500
+  batch_size: 4
+  learning_rate: 1.0e-4
+  target_modules: [to_k, to_q, to_v, to_out.0]
+
+# Same sampler settings for the base model and both runs.
+generate:
+  steps: 30
+  guidance_scale: 7.5
+  seeds: [0, 1]

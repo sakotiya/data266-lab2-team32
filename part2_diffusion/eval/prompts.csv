@@ -1,4 +1,14 @@
 prompt_id,category,prompt,source
+ID01,in_domain,a dog and a man sitting on the ground,test-set caption
+ID02,in_domain,a dog with a banda around its neck,test-set caption
+ID03,in_domain,a man in a black hoodie with a sword,test-set caption
+ID04,in_domain,a man in a green jacket and hat,test-set caption
+ID05,in_domain,a man in a suit with a red dot on his face,test-set caption
+ID06,in_domain,a man in the woods with a sword,test-set caption
+ID07,in_domain,a man with a big smile on his face,test-set caption
+ID08,in_domain,a man with black hair and blue eyes pointing at the camera,test-set caption
+ID09,in_domain,a spider hanging from the ceiling of a room,test-set caption
+ID10,in_domain,a woman with long brown hair and blue eyes,test-set caption
 OD01,out_of_domain,a red sports car parked on a wet city street at night,written by team
 OD02,out_of_domain,a lighthouse on a rocky coast during a storm,written by team
 OD03,out_of_domain,a cat sleeping on a stack of old books next to a window,written by team

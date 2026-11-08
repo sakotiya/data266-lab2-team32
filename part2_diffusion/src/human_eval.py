@@ -1,129 +1,62 @@
-"""Task 2.4 human evaluation: 25 blinded pairs, final run vs base model.
+"""Human evaluation: 25 blinded pairs (final run vs base model), left/right in random order.
 
-build() picks 25 of the 40 (prompt, seed) pairs with seed 266 and puts the final-run and base
-images left/right at random. It writes:
-  outputs/human_eval/rating_sheet.html   self-contained form; each rater ticks Left/Right twice
-                                         per pair and clicks "Download CSV"
-  metrics/human_eval/pair_key.csv        which side is which (raters must not open it)
-Raters save their file as metrics/human_eval/ratings_<name>.csv; score() computes the win rate.
+make_pairs() saves one image per pair (A on the left, B on the right), a key that says which
+side is which, and a blank sheet. Each rater copies the sheet to ratings_<name>.csv and writes
+A or B in both columns. score() turns the filled sheets into win rates for the final run.
 """
-
-from __future__ import annotations
-
-import base64
-import html
-import io
-
 import numpy as np
-from PIL import Image
+import pandas as pd
+from PIL import Image, ImageDraw
 
-from .common import SEED, config, image_path, prompts, read_csv, repo_dir, write_csv, write_json
-
-QUESTIONS = [("style", "Which image looks more like the Naruto anime style?"),
-             ("prompt", "Which image matches the prompt better?")]
+from .common import CONFIG, METRICS, OUTPUTS, SEED, image_path, load_prompts
 
 
-def _b64(path, size: int = 384) -> str:
-    buf = io.BytesIO()
-    Image.open(path).convert("RGB").resize((size, size), Image.LANCZOS).save(buf, "JPEG", quality=85)
-    return base64.b64encode(buf.getvalue()).decode()
-
-
-def build(final_run: str) -> list[dict]:
-    n = config()["eval"]["human_pairs"]
-    seeds = config()["generation"]["seeds"]
-    cands = [(p, s) for p in prompts() for s in seeds]
+def make_pairs(final_run, n_pairs=25):
+    candidates = [(p, s) for p in load_prompts() for s in CONFIG["generate"]["seeds"]]
     rng = np.random.default_rng(SEED)
-    pick = sorted(rng.choice(len(cands), size=min(n, len(cands)), replace=False))
-    key, blocks = [], []
-    for k, i in enumerate(pick, 1):
-        p, s = cands[i]
-        left, right = (final_run, "base") if rng.random() < 0.5 else ("base", final_run)
-        key.append({"pair_id": k, "prompt_id": p["prompt_id"], "category": p["category"],
-                    "seed": s, "left": left, "right": right})
-        radios = "".join(
-            f'<p>{q}<br><label><input type="radio" name="{c}{k}" value="L"> Left</label> '
-            f'<label><input type="radio" name="{c}{k}" value="R"> Right</label></p>'
-            for c, q in QUESTIONS)
-        blocks.append(
-            f'<div class="pair"><h3>Pair {k}</h3><p class="prompt">Prompt: '
-            f'{html.escape(p["prompt"])}</p>'
-            f'<img src="data:image/jpeg;base64,{_b64(image_path(left, p["prompt_id"], s))}">'
-            f'<img src="data:image/jpeg;base64,{_b64(image_path(right, p["prompt_id"], s))}">'
-            f'{radios}</div>')
-    page = f"""<!doctype html><html><head><meta charset="utf-8"><title>Part 2 rating sheet</title>
-<style>body{{font-family:sans-serif;max-width:820px;margin:auto;color:#222}}
-.pair{{border-top:1px solid #ddd;padding:8px 0}} img{{width:384px;margin:2px}}
-.prompt{{color:#555}}</style></head><body>
-<h1>Pick the better image (25 pairs)</h1>
-<p>Each pair shows two images for the same prompt, in random order. For each pair answer both
-questions. When done, enter your name and click Download CSV, then send the file to the team.</p>
-{''.join(blocks)}
-<p>Your name: <input id="rater"> <button onclick="dl()">Download CSV</button></p>
-<script>
-function dl(){{
-  const r=document.getElementById('rater').value.trim().replace(/[^A-Za-z0-9_-]/g,'');
-  if(!r){{alert('Enter your name first');return;}}
-  let rows=['pair_id,rater,style,prompt'], missing=[];
-  for(let k=1;k<={len(key)};k++){{
-    const v=c=>{{const e=document.querySelector('input[name='+c+k+']:checked');return e?e.value:''}};
-    if(!v('style')||!v('prompt')) missing.push(k);
-    rows.push([k,r,v('style'),v('prompt')].join(','));
-  }}
-  if(missing.length && !confirm('Unanswered pairs: '+missing.join(' ')+'. Download anyway?')) return;
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([rows.join('\\n')+'\\n'],{{type:'text/csv'}}));
-  a.download='ratings_'+r+'.csv'; a.click();
-}}
-</script></body></html>"""
-    kdir = repo_dir("metrics") / "human_eval"
-    if (kdir / "pair_key.csv").exists() and list(kdir.glob("ratings_*.csv")):
-        old = read_csv(kdir / "pair_key.csv")
-        if [{k: str(v) for k, v in r.items()} for r in key] != old:
-            raise RuntimeError("ratings exist for a different pair key - move them away first")
-    out = repo_dir("outputs") / "human_eval"
-    out.mkdir(parents=True, exist_ok=True)
-    (out / "rating_sheet.html").write_text(page)
-    write_csv(kdir / "pair_key.csv", key)
-    return key
+    chosen = sorted(rng.choice(len(candidates), size=min(n_pairs, len(candidates)), replace=False))
+    folder = OUTPUTS / "human_eval"
+    folder.mkdir(parents=True, exist_ok=True)
+
+    key, sheet = [], []
+    for pair_id, i in enumerate(chosen, start=1):
+        p, seed = candidates[i]
+        a, b = (final_run, "base") if rng.random() < 0.5 else ("base", final_run)
+        canvas = Image.new("RGB", (1032, 560), "white")
+        canvas.paste(Image.open(image_path(a, p["prompt_id"], seed)), (0, 40))
+        canvas.paste(Image.open(image_path(b, p["prompt_id"], seed)), (520, 40))
+        draw = ImageDraw.Draw(canvas)
+        draw.text((8, 4), f"Pair {pair_id}: {p['prompt']}", fill="black")
+        draw.text((8, 22), "A", fill="black")
+        draw.text((528, 22), "B", fill="black")
+        canvas.save(folder / f"pair_{pair_id:02d}.jpg", quality=90)
+        key.append({"pair_id": pair_id, "prompt_id": p["prompt_id"], "category": p["category"],
+                    "seed": seed, "A": a, "B": b})
+        sheet.append({"pair_id": pair_id, "better_naruto_style": "", "better_prompt_match": ""})
+
+    pd.DataFrame(key).to_csv(METRICS / "human_eval_key.csv", index=False)
+    pd.DataFrame(sheet).to_csv(folder / "ratings_TEMPLATE.csv", index=False)
+    return pd.DataFrame(key)
 
 
-def score(final_run: str) -> dict:
-    d = repo_dir("metrics") / "human_eval"
-    key = {int(r["pair_id"]): r for r in read_csv(d / "pair_key.csv")}
-    files = sorted(d.glob("ratings_*.csv"))
-    if not files:
-        return {"status": "no ratings yet", "raters": 0}
-    votes = {}                                       # (pair, question) -> list of 1/0 (final won)
-    per_rater = {}
+def score(final_run):
+    key = pd.read_csv(METRICS / "human_eval_key.csv").set_index("pair_id")
+    files = sorted((METRICS / "human_eval").glob("ratings_*.csv"))
+    rows = []
     for f in files:
-        rows = read_csv(f)
-        name = rows[0]["rater"] if rows else f.stem
-        wins = {c: [] for c, _ in QUESTIONS}
-        for r in rows:
-            k = int(r["pair_id"])
-            for c, _ in QUESTIONS:
-                if r[c] not in ("L", "R"):
-                    continue
-                won = int(key[k]["left" if r[c] == "L" else "right"] == final_run)
-                wins[c].append(won)
-                votes.setdefault((k, c), []).append(won)
-        per_rater[name] = {c: {"win_rate": float(np.mean(v)) if v else None, "answered": len(v)}
-                           for c, v in wins.items()}
-    res = {"final_run": final_run, "raters": len(files), "rater_names": list(per_rater),
-           "pairs": len(key), "per_rater": per_rater}
-    for c, _ in QUESTIONS:
-        allv = [w for (k, q), v in votes.items() if q == c for w in v]
-        maj = [int(np.mean(v) > 0.5) for (k, q), v in votes.items() if q == c and np.mean(v) != 0.5]
-        unanimous = [len(set(v)) == 1 for (k, q), v in votes.items() if q == c and len(v) > 1]
-        res[c] = {"win_rate_all_votes": float(np.mean(allv)) if allv else None,
-                  "win_rate_majority": float(np.mean(maj)) if maj else None,
-                  "unanimous_pct": 100 * float(np.mean(unanimous)) if unanimous else None,
-                  "votes": len(allv)}
-        res[c]["by_category"] = {
-            cat: float(np.mean([w for (k, q), v in votes.items()
-                                if q == c and key[k]["category"] == cat for w in v]))
-            for cat in sorted({r["category"] for r in key.values()})
-            if any(q == c and key[k]["category"] == cat for (k, q) in votes)}
-    write_json(repo_dir("metrics") / "human_eval_summary.json", res)
-    return res
+        rater = f.stem.replace("ratings_", "")
+        for _, r in pd.read_csv(f).iterrows():
+            for question in ("better_naruto_style", "better_prompt_match"):
+                choice = str(r[question]).strip().upper()
+                if choice in ("A", "B"):
+                    rows.append({"rater": rater, "pair_id": r["pair_id"], "question": question,
+                                 "final_won": key.loc[r["pair_id"], choice] == final_run})
+    votes = pd.DataFrame(rows)
+    if votes.empty:
+        print("no ratings yet")
+        return None
+    win_rate = votes.groupby("question")["final_won"].mean()
+    per_rater = votes.pivot_table(index="rater", columns="question", values="final_won")
+    # agreement: share of pairs where every rater picked the same side
+    agree = votes.groupby(["question", "pair_id"])["final_won"].nunique().eq(1).groupby("question").mean()
+    return pd.DataFrame({"final_run_win_rate": win_rate, "all_raters_agree": agree}), per_rater
