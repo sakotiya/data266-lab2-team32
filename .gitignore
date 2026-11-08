@@ -7,7 +7,6 @@
 *.pth
 *.bin
 *.ckpt
-chroma_db/
 
 # secrets
 .env
@@ -21,3 +20,8 @@ __pycache__/
 
 # Part 2 weights and generated images (they go to Hugging Face)
 part2_diffusion/outputs/big/
+
+# Part 1 generated outputs (chunks, figures, chroma index)
+part1_rag/outputs/chunks/
+part1_rag/outputs/figures/
+part1_rag/chroma_db/
