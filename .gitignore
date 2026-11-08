@@ -1,11 +1,12 @@
 # data and weights (weights and generated image sets go to Hugging Face)
-data/
+*/data/
+!part1_rag/data/kb_manifest.json
+!part1_rag/data/validate_submission.py
 *.safetensors
 *.pt
 *.pth
 *.bin
 *.ckpt
-chroma_db/
 
 # secrets
 .env
@@ -19,3 +20,8 @@ __pycache__/
 
 # Part 2 weights and generated images (they go to Hugging Face)
 part2_diffusion/outputs/big/
+
+# Part 1 generated outputs (chunks, figures, chroma index)
+part1_rag/outputs/chunks/
+part1_rag/outputs/figures/
+part1_rag/chroma_db/
