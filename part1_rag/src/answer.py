@@ -1,15 +1,21 @@
-"""Answer generation using Gemini API with the 5 answering rules."""
+"""Answer generation using Google GenAI (Gemini) with the 5 answering rules."""
 import json
 import os
 import re
 from pathlib import Path
 
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 from .common import DOCS, MANIFEST, PRECEDENCE
 
 # Conversation memory: {conversation_id: [{"role": "user/assistant", "content": ...}, ...]}
 _memory = {}
+_client = None
+
+# Model name - can be overridden via GEMINI_MODEL env var
+# Kaggle may use different model names than local
+MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
 
 SYSTEM_PROMPT = """You are a precise economics Q&A assistant. Answer questions using ONLY the provided document excerpts.
 
@@ -43,10 +49,11 @@ If figure_references is empty, use ["NONE"]. Join citation elements exactly as s
 
 def configure_gemini(api_key: str = None):
     """Configure Gemini API."""
-    key = api_key or os.environ.get("GOOGLE_API_KEY") or os.environ.get("KAGGLE_KEY")
+    global _client
+    key = api_key or os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY")
     if not key:
         raise ValueError("Set GOOGLE_API_KEY environment variable")
-    genai.configure(api_key=key)
+    _client = genai.Client(api_key=key)
 
 
 def get_conversation_history(conversation_id: str) -> list[dict]:
@@ -104,6 +111,10 @@ def generate_answer(question: str, search_results: dict, conversation_id: str = 
     Returns:
         dict with keys: answer, status, citations, figure_references
     """
+    global _client
+    if _client is None:
+        configure_gemini()
+
     # Build context from search results
     context = format_context(search_results)
 
@@ -117,7 +128,9 @@ def generate_answer(question: str, search_results: dict, conversation_id: str = 
                 history_text += f"Q: {turn['question']}\nA: {turn['answer']}\n\n"
 
     # Build the prompt
-    user_prompt = f"""{history_text}
+    user_prompt = f"""{SYSTEM_PROMPT}
+
+{history_text}
 DOCUMENT EXCERPTS:
 {context}
 
@@ -125,11 +138,14 @@ QUESTION: {question}
 
 Respond with JSON only."""
 
-    # Call Gemini
-    model = genai.GenerativeModel("gemini-pro")
-    response = model.generate_content(
-        [{"role": "user", "parts": [SYSTEM_PROMPT + "\n\n" + user_prompt]}],
-        generation_config={"temperature": 0.1, "max_output_tokens": 1024}
+    # Call Gemini - use gemini-3.8-flash as recommended by Google
+    response = _client.models.generate_content(
+        model=MODEL_NAME,
+        contents=user_prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.1,
+            max_output_tokens=1024
+        )
     )
 
     # Parse response
@@ -155,9 +171,10 @@ Respond with JSON only."""
         if not result["figure_references"]:
             result["figure_references"] = ["NONE"]
 
-    except (json.JSONDecodeError, IndexError) as e:
+    except (json.JSONDecodeError, IndexError, AttributeError) as e:
+        text = response.text if hasattr(response, 'text') else str(response)
         result = {
-            "answer": response.text[:500] if response.text else "Error generating answer",
+            "answer": text[:500] if text else "Error generating answer",
             "status": "answered",
             "citations": [],
             "figure_references": ["NONE"]
