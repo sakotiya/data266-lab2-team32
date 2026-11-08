@@ -126,7 +126,7 @@ QUESTION: {question}
 Respond with JSON only."""
 
     # Call Gemini
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-pro")
     response = model.generate_content(
         [{"role": "user", "parts": [SYSTEM_PROMPT + "\n\n" + user_prompt]}],
         generation_config={"temperature": 0.1, "max_output_tokens": 1024}
