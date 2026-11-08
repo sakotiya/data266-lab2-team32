@@ -2,6 +2,7 @@
 import json
 
 import chromadb
+import chromadb.errors
 from chromadb.utils import embedding_functions
 
 from .common import CHROMA_PATH, CHUNKS_PATH, DOCS
@@ -26,7 +27,7 @@ def build_index():
     for name in ["text_chunks", "figures"]:
         try:
             client.delete_collection(name)
-        except ValueError:
+        except (ValueError, chromadb.errors.NotFoundError):
             pass
 
     # Index text chunks
