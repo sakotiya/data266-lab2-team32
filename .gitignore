@@ -1,5 +1,7 @@
 # data and weights (weights and generated image sets go to Hugging Face)
-data/
+*/data/
+!part1_rag/data/kb_manifest.json
+!part1_rag/data/validate_submission.py
 *.safetensors
 *.pt
 *.pth
