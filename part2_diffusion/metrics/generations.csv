@@ -1,0 +1,121 @@
+model,prompt_id,category,prompt,seed,nsfw_flagged,file
+base,ID01,in_domain,a dog and a man sitting on the ground,0,False,base/ID01_seed0.png
+base,ID01,in_domain,a dog and a man sitting on the ground,1,False,base/ID01_seed1.png
+base,ID02,in_domain,a dog with a banda around its neck,0,False,base/ID02_seed0.png
+base,ID02,in_domain,a dog with a banda around its neck,1,False,base/ID02_seed1.png
+base,ID03,in_domain,a man in a black hoodie with a sword,0,False,base/ID03_seed0.png
+base,ID03,in_domain,a man in a black hoodie with a sword,1,False,base/ID03_seed1.png
+base,ID04,in_domain,a man in a green jacket and hat,0,False,base/ID04_seed0.png
+base,ID04,in_domain,a man in a green jacket and hat,1,False,base/ID04_seed1.png
+base,ID05,in_domain,a man in a suit with a red dot on his face,0,False,base/ID05_seed0.png
+base,ID05,in_domain,a man in a suit with a red dot on his face,1,False,base/ID05_seed1.png
+base,ID06,in_domain,a man in the woods with a sword,0,False,base/ID06_seed0.png
+base,ID06,in_domain,a man in the woods with a sword,1,False,base/ID06_seed1.png
+base,ID07,in_domain,a man with a big smile on his face,0,False,base/ID07_seed0.png
+base,ID07,in_domain,a man with a big smile on his face,1,False,base/ID07_seed1.png
+base,ID08,in_domain,a man with black hair and blue eyes pointing at the camera,0,False,base/ID08_seed0.png
+base,ID08,in_domain,a man with black hair and blue eyes pointing at the camera,1,False,base/ID08_seed1.png
+base,ID09,in_domain,a spider hanging from the ceiling of a room,0,False,base/ID09_seed0.png
+base,ID09,in_domain,a spider hanging from the ceiling of a room,1,False,base/ID09_seed1.png
+base,ID10,in_domain,a woman with long brown hair and blue eyes,0,False,base/ID10_seed0.png
+base,ID10,in_domain,a woman with long brown hair and blue eyes,1,False,base/ID10_seed1.png
+base,OD01,out_of_domain,a red sports car parked on a wet city street at night,0,False,base/OD01_seed0.png
+base,OD01,out_of_domain,a red sports car parked on a wet city street at night,1,False,base/OD01_seed1.png
+base,OD02,out_of_domain,a lighthouse on a rocky coast during a storm,0,False,base/OD02_seed0.png
+base,OD02,out_of_domain,a lighthouse on a rocky coast during a storm,1,False,base/OD02_seed1.png
+base,OD03,out_of_domain,a cat sleeping on a stack of old books next to a window,0,False,base/OD03_seed0.png
+base,OD03,out_of_domain,a cat sleeping on a stack of old books next to a window,1,False,base/OD03_seed1.png
+base,OD04,out_of_domain,a modern glass skyscraper reflecting the sunset,0,False,base/OD04_seed0.png
+base,OD04,out_of_domain,a modern glass skyscraper reflecting the sunset,1,False,base/OD04_seed1.png
+base,OD05,out_of_domain,a bowl of fresh fruit on a wooden kitchen table,0,False,base/OD05_seed0.png
+base,OD05,out_of_domain,a bowl of fresh fruit on a wooden kitchen table,1,False,base/OD05_seed1.png
+base,CP01,compositional,"two ninjas standing back to back, one in red and one in blue",0,False,base/CP01_seed0.png
+base,CP01,compositional,"two ninjas standing back to back, one in red and one in blue",1,False,base/CP01_seed1.png
+base,CP02,compositional,a girl with pink hair holding a green umbrella next to a boy with a black cat,0,False,base/CP02_seed0.png
+base,CP02,compositional,a girl with pink hair holding a green umbrella next to a boy with a black cat,1,False,base/CP02_seed1.png
+base,CP03,compositional,a man with a sword on the left and a woman with a bow on the right,0,False,base/CP03_seed0.png
+base,CP03,compositional,a man with a sword on the left and a woman with a bow on the right,1,False,base/CP03_seed1.png
+base,CP04,compositional,"three people in a row: the left one wears a hat, the middle one wears glasses, the right one is smiling",0,False,base/CP04_seed0.png
+base,CP04,compositional,"three people in a row: the left one wears a hat, the middle one wears glasses, the right one is smiling",1,False,base/CP04_seed1.png
+base,CP05,compositional,a small blue fox sitting on top of a big yellow car,0,False,base/CP05_seed0.png
+base,CP05,compositional,a small blue fox sitting on top of a big yellow car,1,False,base/CP05_seed1.png
+run1_lora_r4,ID01,in_domain,a dog and a man sitting on the ground,0,False,run1_lora_r4/ID01_seed0.png
+run1_lora_r4,ID01,in_domain,a dog and a man sitting on the ground,1,False,run1_lora_r4/ID01_seed1.png
+run1_lora_r4,ID02,in_domain,a dog with a banda around its neck,0,False,run1_lora_r4/ID02_seed0.png
+run1_lora_r4,ID02,in_domain,a dog with a banda around its neck,1,False,run1_lora_r4/ID02_seed1.png
+run1_lora_r4,ID03,in_domain,a man in a black hoodie with a sword,0,False,run1_lora_r4/ID03_seed0.png
+run1_lora_r4,ID03,in_domain,a man in a black hoodie with a sword,1,True,run1_lora_r4/ID03_seed1.png
+run1_lora_r4,ID04,in_domain,a man in a green jacket and hat,0,True,run1_lora_r4/ID04_seed0.png
+run1_lora_r4,ID04,in_domain,a man in a green jacket and hat,1,True,run1_lora_r4/ID04_seed1.png
+run1_lora_r4,ID05,in_domain,a man in a suit with a red dot on his face,0,False,run1_lora_r4/ID05_seed0.png
+run1_lora_r4,ID05,in_domain,a man in a suit with a red dot on his face,1,False,run1_lora_r4/ID05_seed1.png
+run1_lora_r4,ID06,in_domain,a man in the woods with a sword,0,False,run1_lora_r4/ID06_seed0.png
+run1_lora_r4,ID06,in_domain,a man in the woods with a sword,1,False,run1_lora_r4/ID06_seed1.png
+run1_lora_r4,ID07,in_domain,a man with a big smile on his face,0,False,run1_lora_r4/ID07_seed0.png
+run1_lora_r4,ID07,in_domain,a man with a big smile on his face,1,False,run1_lora_r4/ID07_seed1.png
+run1_lora_r4,ID08,in_domain,a man with black hair and blue eyes pointing at the camera,0,False,run1_lora_r4/ID08_seed0.png
+run1_lora_r4,ID08,in_domain,a man with black hair and blue eyes pointing at the camera,1,False,run1_lora_r4/ID08_seed1.png
+run1_lora_r4,ID09,in_domain,a spider hanging from the ceiling of a room,0,False,run1_lora_r4/ID09_seed0.png
+run1_lora_r4,ID09,in_domain,a spider hanging from the ceiling of a room,1,False,run1_lora_r4/ID09_seed1.png
+run1_lora_r4,ID10,in_domain,a woman with long brown hair and blue eyes,0,False,run1_lora_r4/ID10_seed0.png
+run1_lora_r4,ID10,in_domain,a woman with long brown hair and blue eyes,1,False,run1_lora_r4/ID10_seed1.png
+run1_lora_r4,OD01,out_of_domain,a red sports car parked on a wet city street at night,0,False,run1_lora_r4/OD01_seed0.png
+run1_lora_r4,OD01,out_of_domain,a red sports car parked on a wet city street at night,1,False,run1_lora_r4/OD01_seed1.png
+run1_lora_r4,OD02,out_of_domain,a lighthouse on a rocky coast during a storm,0,False,run1_lora_r4/OD02_seed0.png
+run1_lora_r4,OD02,out_of_domain,a lighthouse on a rocky coast during a storm,1,False,run1_lora_r4/OD02_seed1.png
+run1_lora_r4,OD03,out_of_domain,a cat sleeping on a stack of old books next to a window,0,False,run1_lora_r4/OD03_seed0.png
+run1_lora_r4,OD03,out_of_domain,a cat sleeping on a stack of old books next to a window,1,False,run1_lora_r4/OD03_seed1.png
+run1_lora_r4,OD04,out_of_domain,a modern glass skyscraper reflecting the sunset,0,False,run1_lora_r4/OD04_seed0.png
+run1_lora_r4,OD04,out_of_domain,a modern glass skyscraper reflecting the sunset,1,False,run1_lora_r4/OD04_seed1.png
+run1_lora_r4,OD05,out_of_domain,a bowl of fresh fruit on a wooden kitchen table,0,False,run1_lora_r4/OD05_seed0.png
+run1_lora_r4,OD05,out_of_domain,a bowl of fresh fruit on a wooden kitchen table,1,False,run1_lora_r4/OD05_seed1.png
+run1_lora_r4,CP01,compositional,"two ninjas standing back to back, one in red and one in blue",0,False,run1_lora_r4/CP01_seed0.png
+run1_lora_r4,CP01,compositional,"two ninjas standing back to back, one in red and one in blue",1,False,run1_lora_r4/CP01_seed1.png
+run1_lora_r4,CP02,compositional,a girl with pink hair holding a green umbrella next to a boy with a black cat,0,False,run1_lora_r4/CP02_seed0.png
+run1_lora_r4,CP02,compositional,a girl with pink hair holding a green umbrella next to a boy with a black cat,1,False,run1_lora_r4/CP02_seed1.png
+run1_lora_r4,CP03,compositional,a man with a sword on the left and a woman with a bow on the right,0,False,run1_lora_r4/CP03_seed0.png
+run1_lora_r4,CP03,compositional,a man with a sword on the left and a woman with a bow on the right,1,False,run1_lora_r4/CP03_seed1.png
+run1_lora_r4,CP04,compositional,"three people in a row: the left one wears a hat, the middle one wears glasses, the right one is smiling",0,False,run1_lora_r4/CP04_seed0.png
+run1_lora_r4,CP04,compositional,"three people in a row: the left one wears a hat, the middle one wears glasses, the right one is smiling",1,False,run1_lora_r4/CP04_seed1.png
+run1_lora_r4,CP05,compositional,a small blue fox sitting on top of a big yellow car,0,False,run1_lora_r4/CP05_seed0.png
+run1_lora_r4,CP05,compositional,a small blue fox sitting on top of a big yellow car,1,False,run1_lora_r4/CP05_seed1.png
+run2_lora_r32,ID01,in_domain,a dog and a man sitting on the ground,0,False,run2_lora_r32/ID01_seed0.png
+run2_lora_r32,ID01,in_domain,a dog and a man sitting on the ground,1,False,run2_lora_r32/ID01_seed1.png
+run2_lora_r32,ID02,in_domain,a dog with a banda around its neck,0,False,run2_lora_r32/ID02_seed0.png
+run2_lora_r32,ID02,in_domain,a dog with a banda around its neck,1,False,run2_lora_r32/ID02_seed1.png
+run2_lora_r32,ID03,in_domain,a man in a black hoodie with a sword,0,False,run2_lora_r32/ID03_seed0.png
+run2_lora_r32,ID03,in_domain,a man in a black hoodie with a sword,1,False,run2_lora_r32/ID03_seed1.png
+run2_lora_r32,ID04,in_domain,a man in a green jacket and hat,0,True,run2_lora_r32/ID04_seed0.png
+run2_lora_r32,ID04,in_domain,a man in a green jacket and hat,1,True,run2_lora_r32/ID04_seed1.png
+run2_lora_r32,ID05,in_domain,a man in a suit with a red dot on his face,0,True,run2_lora_r32/ID05_seed0.png
+run2_lora_r32,ID05,in_domain,a man in a suit with a red dot on his face,1,False,run2_lora_r32/ID05_seed1.png
+run2_lora_r32,ID06,in_domain,a man in the woods with a sword,0,False,run2_lora_r32/ID06_seed0.png
+run2_lora_r32,ID06,in_domain,a man in the woods with a sword,1,False,run2_lora_r32/ID06_seed1.png
+run2_lora_r32,ID07,in_domain,a man with a big smile on his face,0,False,run2_lora_r32/ID07_seed0.png
+run2_lora_r32,ID07,in_domain,a man with a big smile on his face,1,False,run2_lora_r32/ID07_seed1.png
+run2_lora_r32,ID08,in_domain,a man with black hair and blue eyes pointing at the camera,0,True,run2_lora_r32/ID08_seed0.png
+run2_lora_r32,ID08,in_domain,a man with black hair and blue eyes pointing at the camera,1,True,run2_lora_r32/ID08_seed1.png
+run2_lora_r32,ID09,in_domain,a spider hanging from the ceiling of a room,0,False,run2_lora_r32/ID09_seed0.png
+run2_lora_r32,ID09,in_domain,a spider hanging from the ceiling of a room,1,False,run2_lora_r32/ID09_seed1.png
+run2_lora_r32,ID10,in_domain,a woman with long brown hair and blue eyes,0,False,run2_lora_r32/ID10_seed0.png
+run2_lora_r32,ID10,in_domain,a woman with long brown hair and blue eyes,1,False,run2_lora_r32/ID10_seed1.png
+run2_lora_r32,OD01,out_of_domain,a red sports car parked on a wet city street at night,0,False,run2_lora_r32/OD01_seed0.png
+run2_lora_r32,OD01,out_of_domain,a red sports car parked on a wet city street at night,1,False,run2_lora_r32/OD01_seed1.png
+run2_lora_r32,OD02,out_of_domain,a lighthouse on a rocky coast during a storm,0,False,run2_lora_r32/OD02_seed0.png
+run2_lora_r32,OD02,out_of_domain,a lighthouse on a rocky coast during a storm,1,False,run2_lora_r32/OD02_seed1.png
+run2_lora_r32,OD03,out_of_domain,a cat sleeping on a stack of old books next to a window,0,False,run2_lora_r32/OD03_seed0.png
+run2_lora_r32,OD03,out_of_domain,a cat sleeping on a stack of old books next to a window,1,False,run2_lora_r32/OD03_seed1.png
+run2_lora_r32,OD04,out_of_domain,a modern glass skyscraper reflecting the sunset,0,False,run2_lora_r32/OD04_seed0.png
+run2_lora_r32,OD04,out_of_domain,a modern glass skyscraper reflecting the sunset,1,False,run2_lora_r32/OD04_seed1.png
+run2_lora_r32,OD05,out_of_domain,a bowl of fresh fruit on a wooden kitchen table,0,False,run2_lora_r32/OD05_seed0.png
+run2_lora_r32,OD05,out_of_domain,a bowl of fresh fruit on a wooden kitchen table,1,False,run2_lora_r32/OD05_seed1.png
+run2_lora_r32,CP01,compositional,"two ninjas standing back to back, one in red and one in blue",0,False,run2_lora_r32/CP01_seed0.png
+run2_lora_r32,CP01,compositional,"two ninjas standing back to back, one in red and one in blue",1,False,run2_lora_r32/CP01_seed1.png
+run2_lora_r32,CP02,compositional,a girl with pink hair holding a green umbrella next to a boy with a black cat,0,False,run2_lora_r32/CP02_seed0.png
+run2_lora_r32,CP02,compositional,a girl with pink hair holding a green umbrella next to a boy with a black cat,1,False,run2_lora_r32/CP02_seed1.png
+run2_lora_r32,CP03,compositional,a man with a sword on the left and a woman with a bow on the right,0,False,run2_lora_r32/CP03_seed0.png
+run2_lora_r32,CP03,compositional,a man with a sword on the left and a woman with a bow on the right,1,False,run2_lora_r32/CP03_seed1.png
+run2_lora_r32,CP04,compositional,"three people in a row: the left one wears a hat, the middle one wears glasses, the right one is smiling",0,False,run2_lora_r32/CP04_seed0.png
+run2_lora_r32,CP04,compositional,"three people in a row: the left one wears a hat, the middle one wears glasses, the right one is smiling",1,False,run2_lora_r32/CP04_seed1.png
+run2_lora_r32,CP05,compositional,a small blue fox sitting on top of a big yellow car,0,False,run2_lora_r32/CP05_seed0.png
+run2_lora_r32,CP05,compositional,a small blue fox sitting on top of a big yellow car,1,False,run2_lora_r32/CP05_seed1.png
