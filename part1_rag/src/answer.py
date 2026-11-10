@@ -2,6 +2,7 @@
 import json
 import os
 import re
+import time
 from pathlib import Path
 
 from google import genai
@@ -139,14 +140,26 @@ QUESTION: {question}
 Respond with JSON only."""
 
     # Call Gemini - use gemini-3.8-flash as recommended by Google
-    response = _client.models.generate_content(
-        model=MODEL_NAME,
-        contents=user_prompt,
-        config=types.GenerateContentConfig(
-            temperature=0.1,
-            max_output_tokens=1024
-        )
-    )
+    # Retry on transient errors (503, 429)
+    for attempt in range(3):
+        try:
+            response = _client.models.generate_content(
+                model=MODEL_NAME,
+                contents=user_prompt,
+                config=types.GenerateContentConfig(
+                    temperature=0.1,
+                    max_output_tokens=1024
+                )
+            )
+            break
+        except Exception as e:
+            if "503" in str(e) or "429" in str(e) or "UNAVAILABLE" in str(e):
+                if attempt < 2:
+                    time.sleep(2 ** attempt)  # 1s, 2s backoff
+                    continue
+            raise
+    else:
+        raise Exception("Failed after 3 retries")
 
     # Parse response
     try:
