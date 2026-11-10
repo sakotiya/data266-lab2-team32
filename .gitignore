@@ -25,3 +25,7 @@ part2_diffusion/outputs/big/
 part1_rag/outputs/chunks/
 part1_rag/outputs/figures/
 part1_rag/chroma_db/
+
+# personal notes
+LAB2_STEPS.md
+DATA266_Lab2_Requirements.pdf
