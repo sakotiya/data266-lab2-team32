@@ -14,3 +14,8 @@ torchvision
 pyyaml
 matplotlib
 pandas
+
+# Part 3 - pin from the version cell in notebooks/p3_agents.ipynb on Colab
+google-genai
+gradio
+pydantic
