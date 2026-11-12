@@ -20,7 +20,8 @@ CHUNKS_PATH = OUTPUTS / "chunks"
 DESCRIPTIONS = PART / "outputs" / "figure_descriptions.json"
 
 SEED = 266
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite")   # free tier: the Flash models allow only 20 requests/day
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite")   # figure transcriptions (cached, committed)
+CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5-5")        # answers
 
 
 def load_env():
@@ -57,3 +58,35 @@ def gemini(contents, schema=None, system=None, model=None):
             if e.code not in (429, 500, 503, 504) or attempt == 7 or "PerDay" in str(e):   # daily quota: no point waiting
                 raise
             time.sleep(min(5 * 2 ** attempt, 120))
+
+
+_claude = None
+
+
+def claude(contents, schema, system=None, model=None):
+    """One Claude call: contents are strings and PIL images, the reply is parsed into the pydantic `schema`."""
+    global _claude
+    import base64
+    import io
+    import anthropic
+    if _claude is None:
+        load_env()
+        _claude = anthropic.Anthropic(max_retries=6)          # the SDK retries 429/5xx with backoff
+    blocks = []
+    for c in contents:
+        if isinstance(c, str):
+            blocks.append({"type": "text", "text": c})
+        else:
+            buf = io.BytesIO()
+            c.convert("RGB").save(buf, format="PNG")
+            blocks.append({"type": "image", "source": {"type": "base64", "media_type": "image/png",
+                                                        "data": base64.standard_b64encode(buf.getvalue()).decode()}})
+    json_schema = {**schema.model_json_schema(), "additionalProperties": False}
+    r = _claude.beta.messages.create(
+        model=model or CLAUDE_MODEL, max_tokens=16000, system=system or anthropic.NOT_GIVEN,
+        messages=[{"role": "user", "content": blocks}],
+        output_config={"format": {"type": "json_schema", "schema": json_schema}},
+        betas=["server-side-fallback-2026-07-01"], fallbacks="default")    # a refusal is retried on a fallback model
+    if r.stop_reason == "refusal":
+        raise RuntimeError(f"refused: {r.stop_details}")
+    return schema.model_validate_json(next(b.text for b in r.content if b.type == "text"))

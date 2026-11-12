@@ -9,7 +9,7 @@ from typing import Literal
 from PIL import Image
 from pydantic import BaseModel
 
-from .common import DOCS, gemini
+from .common import DOCS, claude
 from .search import Searcher, named_labels
 
 Status = Literal["answered", "not_found", "conflict", "false_premise", "session_override"]
@@ -116,7 +116,7 @@ class Conversation:
                     f"EARLIER TURNS IN THIS CONVERSATION:\n{history}" if history else "This is the first turn.",
                     f"QUESTION: {question}"]
         try:
-            result = clean(gemini(contents, schema=Answer, system=SYSTEM), self.valid)
+            result = clean(claude(contents, schema=Answer, system=SYSTEM), self.valid)
         except Exception as e:      # never crash a whole run on one question, but say so loudly
             print(f"WARNING: answering failed ({type(e).__name__}: {str(e)[:200]})", file=sys.stderr)
             result = {"answer": f"Error while answering: {type(e).__name__}", "status": "not_found",
