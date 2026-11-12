@@ -81,7 +81,9 @@ def claude(contents, schema, system=None, model=None):
             c.convert("RGB").save(buf, format="PNG")
             blocks.append({"type": "image", "source": {"type": "base64", "media_type": "image/png",
                                                         "data": base64.standard_b64encode(buf.getvalue()).decode()}})
-    json_schema = {**schema.model_json_schema(), "additionalProperties": False}
+    json_schema = schema.model_json_schema()
+    for obj in [json_schema, *json_schema.get("$defs", {}).values()]:     # structured outputs need closed objects
+        obj["additionalProperties"] = False
     r = _claude.beta.messages.create(
         model=model or CLAUDE_MODEL, max_tokens=16000, system=system or anthropic.NOT_GIVEN,
         messages=[{"role": "user", "content": blocks}],

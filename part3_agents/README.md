@@ -23,6 +23,6 @@ Notebook: `notebooks/p3_agents.ipynb`
 
 Every request writes `outputs/traces/<run_id>.json` (each agent's input, output, seconds, error). Generated images go to `outputs/images/` (not committed).
 
-Settings: `GEMINI_API_KEY`, `P3_VLM` (default `gemini-3.5-flash-lite`, same as Part 1), `P3_LORA` (Part 2 LoRA folder or Hugging Face repo id).
+Settings: `ANTHROPIC_API_KEY`, `P3_VLM` (default `claude-sonnet-5-5`, same as Part 1), `P3_LORA` (Part 2 LoRA folder or Hugging Face repo id).
 
 Offline check of the orchestration and metrics (no API or GPU needed): `python -m part3_agents.test_pipeline`.
