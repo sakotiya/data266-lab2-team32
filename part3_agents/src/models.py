@@ -11,7 +11,7 @@ REPO = PART.parent
 OUTPUTS = PART / "outputs"
 SEED = 266
 
-VLM = os.environ.get("P3_VLM", "gemini-2.5-flash")
+VLM = os.environ.get("P3_VLM", "gemini-3.5-flash")
 SD_BASE = "stable-diffusion-v1-5/stable-diffusion-v1-5"
 PIX2PIX = "timbrooks/instruct-pix2pix"
 CLIP = "openai/clip-vit-base-patch32"          # same CLIP as Part 2
