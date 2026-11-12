@@ -55,7 +55,8 @@ def make_mark_sheet(scen, red):
              "output": r.final_image, "system_message": r.message, "rule": r.rubric} for r in scen.itertuples()]
     for r in scen[scen.condition == "critic"].itertuples():
         trace = json.loads((models.PART / r.trace).read_text())
-        gens = [st["output"]["output_image"] for st in trace["steps"] if st["agent"] == "image_generation"]
+        gens = [st["output"]["output_image"] for st in trace["steps"]
+                if st["agent"] == "image_generation" and "output" in st]     # a failed step has "error" instead
         rows += [{"kind": "critic", "id": f"{r.scenario_id}/a{i}", "image": r.image, "request": r.request,
                   "output": g, "rule": "accept if it does what was asked and keeps the rest; else revise"}
                  for i, g in enumerate(gens)]
