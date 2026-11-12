@@ -37,4 +37,4 @@ All required work runs on one 16 GB GPU (Kaggle/Colab T4).
 
 | Part | API | Model version | Used for |
 |---|---|---|---|
-| 3 | Google Gemini API (`google-genai`) | `gemini-2.5-flash` | Planner, Vision, Prompt Engineering and Critique agents |
+| 3 | Google Gemini API (`google-genai`) | `gemini-3.5-flash-lite` | Planner, Vision, Prompt Engineering and Critique agents |
