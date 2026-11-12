@@ -15,8 +15,8 @@ VLM = os.environ.get("P3_VLM", "gemini-3.5-flash")
 SD_BASE = "stable-diffusion-v1-5/stable-diffusion-v1-5"
 PIX2PIX = "timbrooks/instruct-pix2pix"
 CLIP = "openai/clip-vit-base-patch32"          # same CLIP as Part 2
-# Part 2 LoRA: a local folder from part2_diffusion/outputs/big/loras/<run>, or its Hugging Face repo id.
-LORA = os.environ.get("P3_LORA", str(REPO / "part2_diffusion" / "outputs" / "big" / "loras" / "run2_lora_r32"))
+# Part 2 LoRA: HuggingFace repo id (or local path via P3_LORA env var)
+LORA = os.environ.get("P3_LORA", "sakotiya/data266-team32-naruto-run2-lora-r32")
 
 DEVICE = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
 DTYPE = torch.float16 if DEVICE == "cuda" else torch.float32
