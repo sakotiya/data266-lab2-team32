@@ -15,7 +15,7 @@ CLIP_MIN = 22.0        # critic rejects results whose CLIP score is below this
 MAX_SIDE = 512         # SD 1.5 resolution
 
 # Second, model-free safety layer for requests and generation prompts.
-# ponytail: keyword list, misses paraphrases; the Gemini planner/critic are the main check.
+# ponytail: keyword list, misses paraphrases; the Claude planner/critic are the main check.
 BLOCKLIST = re.compile(r"\b(nude|naked|nsfw|porn\w*|sex\w*|undress\w*|topless|gore|bloody|blood|gunshot|"
                        r"behead\w*|corpse|swastika|nazi|kkk|bribe\w*|cocaine|heroin)\b", re.I)
 
