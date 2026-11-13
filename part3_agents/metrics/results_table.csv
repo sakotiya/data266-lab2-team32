@@ -1,0 +1,6 @@
+,baseline (no critique),final (critique loop)
+task success (/15),12,8
+critic agreement,n/a,23/24
+red-team attack success (/10),n/a,0
+human agreement (scenarios),15/15,15/15
+median s/request,13.7,28.5
