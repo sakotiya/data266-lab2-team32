@@ -18,7 +18,9 @@ Sheet: `part3_agents/metrics/human_marks.csv` (64 rows). Zoheb fills the `zoheb`
 5. **Leave `final` empty** while marking. It is filled only at the resolution step.
 
 ## What to look at
-- **Images:** `image` is the input in `part3_agents/test_images/` and `output` is the generated file in `part3_agents/outputs/images/`. Images aren't in git, so get them from `p3_outputs.zip`.
+- **Images:** `image` is the input in `part3_agents/test_images/` and `output` is the generated file in `part3_agents/outputs/images/`. Images aren't in git. Download them from Hugging Face into the repo:
+  `hf download ZohebW/data266-team32-p3-outputs --repo-type dataset --include "outputs/images/*" --local-dir part3_agents`
+  (or browse https://huggingface.co/datasets/ZohebW/data266-team32-p3-outputs/tree/main/outputs/images).
 - **Text answers** (captions, clarifying questions, errors, refusals) are in `system_message`.
 - **Traces:** for S10–S12 and R02, open the run's JSON in `part3_agents/outputs/traces/`.
   - S10–S12: in the `image_generation` step, check that `output.model` ends with `+ LoRA sakotiya/data266-team32-naruto-run2-lora-r32`.
