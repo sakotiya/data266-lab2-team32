@@ -1,0 +1,36 @@
+{
+  "dataset": "lambdalabs/naruto-blip-captions",
+  "rows_loaded": 1221,
+  "removed": 0,
+  "removed_by_reason": {},
+  "kept": 1221,
+  "train": 1099,
+  "test": 122,
+  "seed": 266,
+  "closest_kept_dhash_distance": 5,
+  "original_sizes_top5": {
+    "1080x1080": 468,
+    "1076x1076": 135,
+    "1620x1620": 33,
+    "1050x1050": 30,
+    "540x540": 23
+  },
+  "caption_words_mean": 8.9,
+  "top_caption_words": {
+    "man": 692,
+    "hair": 464,
+    "white": 192,
+    "shirt": 192,
+    "eyes": 181,
+    "long": 181,
+    "black": 180,
+    "woman": 175,
+    "his": 163,
+    "green": 142,
+    "blue": 137,
+    "hat": 126,
+    "red": 115,
+    "brown": 95,
+    "sword": 86
+  }
+}

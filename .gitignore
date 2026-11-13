@@ -25,3 +25,11 @@ part2_diffusion/outputs/big/
 part1_rag/outputs/chunks/
 part1_rag/outputs/figures/
 part1_rag/chroma_db/
+
+# Part 3 generated images (they go to Hugging Face); traces are committed
+part3_agents/outputs/images/
+
+# personal notes
+LAB2_STEPS.md
+DATA266_Lab2_Requirements.pdf
+GEMINI_API_KEY

@@ -10,35 +10,53 @@
 
 ## Setup
 ```bash
-pip install pymupdf chromadb sentence-transformers rank-bm25
+pip install pymupdf chromadb sentence-transformers rank-bm25 google-generativeai pandas
 ```
 
-## Pipeline
-
-### 1. Ingest PDFs (Shreya)
-Parse PDFs, extract text chunks and figures/tables as images:
+## Full Pipeline
 ```bash
+# 1. Ingest PDFs (extracts text chunks + figures)
 python -m part1_rag.src.ingest
-```
-Output: `outputs/chunks/` and `outputs/figures/`
 
-### 2. Build Index (Shreya)
-Index in ChromaDB with sentence-transformer embeddings:
-```bash
+# 2. Build ChromaDB index
 python -m part1_rag.src.index
-```
-Output: `chroma_db/`
 
-### 3. Search (Shreya)
-Hybrid search: embeddings + BM25, exact figure matching:
-```python
-from part1_rag.src.search import Searcher
-s = Searcher()
-results = s.search("What was U.S. unemployment in 2010?")
+# 3. Run full pipeline (search + answer for all questions)
+export GOOGLE_API_KEY="your-gemini-api-key"
+python -m part1_rag.src.pipeline
 ```
 
-### 4. Answer Generation (Zoheb)
-TODO: Send retrieved context to LLM, format JSON response with citations.
+This generates `outputs/submission.csv` and validates it.
+
+## Modules
+
+### ingest.py (Shreya)
+Parse PDFs, extract text chunks by page, extract figures/tables as images.
+
+### index.py (Shreya)
+Index in ChromaDB with sentence-transformer embeddings.
+
+### search.py (Shreya)
+Hybrid search: embeddings + BM25, exact figure matching when query names a figure.
+
+### answer.py (Zoheb)
+Generate answers using Gemini with the 5 answering rules:
+1. Outturn supersedes forecast
+2. Revision supersedes original
+3. Conflict → status='conflict', cite both
+4. Not found → status='not_found'; False premise → status='false_premise'
+5. Session override → status='session_override'
+
+Includes conversation memory for multi-turn questions.
+
+### pipeline.py (Zoheb)
+Main runner: reads Questions.csv, processes each question, writes submission.csv.
+
+## Scoring (per question = 1.0)
+- 0.40 **answer**: facts found, numbers within 1%
+- 0.20 **status**: answered/not_found/conflict/false_premise/session_override
+- 0.20 **figure_references**: F1 of figure/table labels
+- 0.20 **citations**: DOC + exact location (DOC2:p4, DOC1:Table 1-2)
 
 ## Data Files (not in git)
 - `data/Document.pdf` - DOC1: Blanchard Macroeconomics Ch 1-2 (high trust)

@@ -31,8 +31,10 @@ All required work runs on one 16 GB GPU (Kaggle/Colab T4).
 
 - Part 1: _to be filled in._
 - Part 2: on a Kaggle T4, see [`part2_diffusion/README.md`](part2_diffusion/README.md) (setup, smoke run, full run, human evaluation).
-- Part 3: _to be filled in._
+- Part 3: on a Colab T4, open `notebooks/p3_agents.ipynb` and Restart & Run All (secrets: `GITHUB_TOKEN`, `GEMINI_API_KEY`). Demo app: last cell, or `python -m part3_agents.app.app` locally. See [`part3_agents/README.md`](part3_agents/README.md).
 
 ## Hosted APIs used
 
-_None yet. List every hosted LLM/VLM/image API here with its model version._
+| Part | API | Model version | Used for |
+|---|---|---|---|
+| 3 | Google Gemini API (`google-genai`) | `gemini-2.5-flash` | Planner, Vision, Prompt Engineering and Critique agents |

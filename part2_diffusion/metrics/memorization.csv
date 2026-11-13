@@ -1,0 +1,11 @@
+prompt_id,closest_train_image,train_caption,similarity
+ID08,00252.png,a man with blonde hair and a white shirt,0.8975
+ID10,01106.png,a girl with long brown hair and blue eyes,0.8015
+ID07,01076.png,a man with a cigarette in his mouth,0.7708
+ID05,01028.png,a man with a beard and a mustache,0.7568
+ID03,00483.png,a man in a black robe with a hood over his head,0.702
+ID06,00419.png,a man in green pants and a white shirt,0.6972
+ID04,00170.png,a white and black pokemon with a black background,0.6865
+ID01,00696.png,a cat and a mouse in a room,0.6698
+ID09,00210.png,a robot with a large green and orange body,0.6582
+ID02,00987.png,a dog with its tongue out in the grass,0.648
