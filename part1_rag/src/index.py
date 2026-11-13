@@ -1,71 +1,51 @@
-"""Index chunks and figures in ChromaDB with embeddings."""
+"""1.1.4 Store pages and figures (caption + VLM description) in ChromaDB with doc_id, page, figure_id, trust_level."""
 import json
+from functools import cache
 
 import chromadb
-import chromadb.errors
 from chromadb.utils import embedding_functions
 
-from .common import CHROMA_PATH, CHUNKS_PATH, DOCS
+from .common import CHROMA_PATH, CHUNKS_PATH, DESCRIPTIONS
+
+EMBED_MODEL = "BAAI/bge-small-en-v1.5"
+COLLECTION = "knowledge_base"
 
 
-def get_embedding_function():
-    """Use sentence-transformers for embeddings."""
-    return embedding_functions.SentenceTransformerEmbeddingFunction(
-        model_name="all-MiniLM-L6-v2"
-    )
-
-
-def build_index():
-    """Build ChromaDB index from extracted chunks and figures."""
+def load_items():
+    """Every searchable item: one per page, one per figure/table. Ids are their citation strings."""
     chunks = json.loads((CHUNKS_PATH / "chunks.json").read_text())
     figures = json.loads((CHUNKS_PATH / "figures.json").read_text())
+    descriptions = json.loads(DESCRIPTIONS.read_text())
+    items = [{"id": f"{c['doc_id']}:p{c['page']}", "doc_id": c["doc_id"], "page": c["page"], "figure_id": "",
+              "trust_level": c["trust_level"], "text": c["text"]} for c in chunks]
+    for f in figures:
+        key = f"{f['doc_id']}:{f['figure_id']}"
+        items.append({"id": key, "doc_id": f["doc_id"], "page": f["page"], "figure_id": f["figure_id"],
+                      "trust_level": f["trust_level"], "image_path": f["image_path"], "caption": f["caption"],
+                      "text": f"{f['caption']}\n{descriptions[key]['text']}"})
+    return items
 
+
+@cache
+def embedder():
+    return embedding_functions.SentenceTransformerEmbeddingFunction(model_name=EMBED_MODEL)
+
+
+def build_index(items=None):
+    items = items or load_items()
     client = chromadb.PersistentClient(path=str(CHROMA_PATH))
-    embed_fn = get_embedding_function()
-
-    # Delete existing collections if they exist
-    for name in ["text_chunks", "figures"]:
-        try:
-            client.delete_collection(name)
-        except (ValueError, chromadb.errors.NotFoundError):
-            pass
-
-    # Index text chunks
-    text_col = client.create_collection(name="text_chunks", embedding_function=embed_fn)
-    text_col.add(
-        ids=[f"{c['doc_id']}_p{c['page']}" for c in chunks],
-        documents=[c["text"] for c in chunks],
-        metadatas=[{
-            "doc_id": c["doc_id"],
-            "page": c["page"],
-            "trust_level": c["trust_level"],
-            "title": c["title"],
-        } for c in chunks],
-    )
-    print(f"Indexed {len(chunks)} text chunks")
-
-    # Index figures with their IDs as searchable text
-    fig_col = client.create_collection(name="figures", embedding_function=embed_fn)
-    fig_col.add(
-        ids=[f"{f['doc_id']}_{f['figure_id'].replace(' ', '_')}" for f in figures],
-        documents=[f"{f['figure_id']} from {DOCS[f['doc_id']]['title']}" for f in figures],
-        metadatas=[{
-            "doc_id": f["doc_id"],
-            "figure_id": f["figure_id"],
-            "figure_type": f["figure_type"],
-            "page": f["page"],
-            "image_path": f["image_path"],
-            "trust_level": f["trust_level"],
-        } for f in figures],
-    )
-    print(f"Indexed {len(figures)} figures/tables")
-
-    return client
+    if COLLECTION in [c.name for c in client.list_collections()]:
+        client.delete_collection(COLLECTION)
+    col = client.create_collection(COLLECTION, embedding_function=embedder(), metadata={"hnsw:space": "cosine"})
+    col.add(ids=[i["id"] for i in items], documents=[i["text"] for i in items],
+            metadatas=[{k: i[k] for k in ("doc_id", "page", "figure_id", "trust_level")} for i in items])
+    print(f"indexed {len(items)} items ({sum(bool(i['figure_id']) for i in items)} figures/tables)")
+    return col
 
 
-def get_client():
-    """Get existing ChromaDB client."""
-    return chromadb.PersistentClient(path=str(CHROMA_PATH))
+def get_collection():
+    client = chromadb.PersistentClient(path=str(CHROMA_PATH))
+    return client.get_collection(COLLECTION, embedding_function=embedder())
 
 
 if __name__ == "__main__":

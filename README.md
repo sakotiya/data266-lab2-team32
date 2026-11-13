@@ -37,4 +37,6 @@ All required work runs on one 16 GB GPU (Kaggle/Colab T4).
 
 | Part | API | Model version | Used for |
 |---|---|---|---|
-| 3 | Google Gemini API (`google-genai`) | `gemini-2.5-flash` | Planner, Vision, Prompt Engineering and Critique agents |
+| 1 | Anthropic Claude API (`anthropic`) | `claude-sonnet-5-5` | Answers (multimodal: page text + figure images) |
+| 1 | Google Gemini API (`google-genai`) | `gemini-3.8-flash`, `gemini-3.6-flash` | Figure/table transcriptions for the index (cached in `outputs/figure_descriptions.json`) |
+| 3 | Anthropic Claude API (`anthropic`) | `claude-sonnet-5-5` | Planner, Vision, Prompt Engineering and Critique agents |

@@ -24,7 +24,7 @@ part2_diffusion/outputs/big/
 # Part 1 generated outputs (chunks, figures, chroma index)
 part1_rag/outputs/chunks/
 part1_rag/outputs/figures/
-part1_rag/chroma_db/
+part1_rag/outputs/chroma_db/
 
 # Part 3 generated images (they go to Hugging Face); traces are committed
 part3_agents/outputs/images/

@@ -1,6 +1,5 @@
-"""Model access shared by the agents: Gemini (VLM), Stable Diffusion pipelines, CLIP. All loaded lazily."""
+"""Model access shared by the agents: Claude (VLM), Stable Diffusion pipelines, CLIP. All loaded lazily."""
 import os
-import time
 from functools import cache
 from pathlib import Path
 
@@ -11,39 +10,21 @@ REPO = PART.parent
 OUTPUTS = PART / "outputs"
 SEED = 266
 
-VLM = os.environ.get("P3_VLM", "gemini-3.5-flash")
+VLM = os.environ.get("P3_VLM", "claude-sonnet-5-5")       # same model as Part 1
 SD_BASE = "stable-diffusion-v1-5/stable-diffusion-v1-5"
 PIX2PIX = "timbrooks/instruct-pix2pix"
 CLIP = "openai/clip-vit-base-patch32"          # same CLIP as Part 2
-# Part 2 LoRA: HuggingFace repo id (or local path via P3_LORA env var)
-LORA = os.environ.get("P3_LORA", "sakotiya/data266-team32-naruto-run2-lora-r32")
+# Part 2 LoRA: a local folder from part2_diffusion/outputs/big/loras/<run>, or its Hugging Face repo id.
+LORA = os.environ.get("P3_LORA", "sakotiya/data266-team32-naruto-run2-lora-r32")   # Part 2 final LoRA (r32)
 
 DEVICE = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
 DTYPE = torch.float16 if DEVICE == "cuda" else torch.float32
 
 
-@cache
-def gemini():
-    from google import genai
-    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if not key:
-        raise RuntimeError("GEMINI_API_KEY is not set (export it, or add it to Colab/Kaggle secrets).")
-    return genai.Client(api_key=key)
-
-
 def ask(contents, schema, system):
-    """One Gemini call that returns a validated pydantic object. Retries rate-limit/server errors."""
-    from google.genai import errors, types
-    config = types.GenerateContentConfig(system_instruction=system, temperature=0, seed=SEED,
-                                         response_mime_type="application/json", response_schema=schema)
-    for i in range(5):
-        try:
-            r = gemini().models.generate_content(model=VLM, contents=contents, config=config)
-            return r.parsed if isinstance(r.parsed, schema) else schema.model_validate_json(r.text)
-        except errors.APIError as e:
-            if e.code not in (429, 500, 503) or i == 4:
-                raise
-            time.sleep(10 * 2 ** i)
+    """One VLM call (strings and PIL images in) that returns a validated pydantic object; same client as Part 1."""
+    from part1_rag.src.common import claude
+    return claude(contents, schema, system, model=VLM)
 
 
 @cache
