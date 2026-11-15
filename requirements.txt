@@ -21,12 +21,14 @@ lpips==0.1.4
 # Part 3 - notebooks/p3_agents.ipynb (Colab T4): agents and demo app (also uses diffusers, transformers, anthropic above)
 gradio==6.31.0
 
-# Used by the notebooks but not printed by them yet; preinstalled on Colab/Kaggle.
-# TODO: pin from `pip freeze` on the Colab runtime before tagging.
+# Shared helpers (versions from `pip freeze` on the Colab T4 runtime)
+torchvision==0.29.1
+huggingface_hub==1.33.0
+pyyaml==6.0.3
+matplotlib==3.10.0
+pandas==2.2.3
+pydantic==2.14.2
+
+# Needed by torchmetrics' KID (Part 2); installed from p2_bundle.zip, not on the stock Colab runtime.
+# TODO: pin from `ls /content/p2_bundle/wheels/` before tagging.
 torch-fidelity
-torchvision
-huggingface_hub
-pyyaml
-matplotlib
-pandas
-pydantic
