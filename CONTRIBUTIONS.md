@@ -40,13 +40,16 @@ Members: Shreya Akotiya (GitHub `sakotiya`), Zoheb Waghu. Both members worked on
 
 ## Meetings
 
-We met every two weeks from the start of the lab, on Zoom or by phone, to review progress, plan the next steps and
-discuss design choices and trade-offs.
+We met every two weeks from the start of the lab, and more often in November, on Zoom or by phone, to review
+progress, plan the next steps and discuss design choices and trade-offs.
 
-| Date (week of) | Format | Topic |
+| Date | Format | Topic |
 |---|---|---|
-| Oct 6, 2026 | Zoom | Kickoff: repository setup, work split across the three parts, Part 1 first milestone |
-| Oct 20, 2026 | Zoom / phone | Part 1 progress (parsing, retrieval), Part 2 data preparation and training plan |
-| Nov 3, 2026 | Zoom / phone | Part 2 training results, Part 3 agent design, Part 1 Kaggle approach and rebuild, evaluation and report plan |
+| Week of Oct 6, 2026 | Zoom | Kickoff: repository setup, work split across the three parts, Part 1 first milestone |
+| Week of Oct 20, 2026 | Zoom / phone | Part 1 progress (parsing, retrieval), Part 2 data preparation and training plan |
+| Nov 3, 2026 | Zoom / phone | Part 2 pipeline and prompts, Part 3 agent design, Part 1 plan for answers and Kaggle |
+| Nov 8, 2026 | Zoom / phone | Part 2 training results (rank 4 vs rank 32), Part 1 parsing, indexing and hybrid search, split of answer generation, first golden set |
+| Nov 12, 2026 | Zoom / phone | Part 1 rebuild with Claude, Part 3 Colab run and independent human marking, which Part 2 LoRA Part 3 uses |
+| Nov 14, 2026 | Zoom / phone | Merging branches, Part 2 human evaluation results, golden-set rewrite and evaluation, Kaggle notebook, report and submission plan |
 <!-- TODO: check these dates and topics against your Zoom history and call logs -->
 
