@@ -38,10 +38,16 @@ Members: Shreya Akotiya (GitHub `sakotiya`), Zoheb Waghu. Both members worked on
   - Model and LoRA wiring (Hugging Face repo id for the Part 2 LoRA).
   - Independent pass/fail marks on every scenario; disagreements resolved with Zoheb (`part3_agents/MARKING.md`).
 
-## Meeting recordings
+## Meetings
 
-Knowledge-transfer sessions and design / trade-off discussions (audio or video, kept with the project files).
+We met every two weeks from the start of the lab, on Zoom or by phone, to review progress, plan the next steps and
+discuss design choices and trade-offs.
 
-| Date | Topic | Link |
+| Date (week of) | Format | Topic |
 |---|---|---|
-| <!-- TODO --> | <!-- e.g. Part 1 architecture and work split --> | <!-- link --> |
+| Oct 6, 2026 | Zoom | Kickoff: repository setup, work split across the three parts, Part 1 first milestone |
+| Oct 20, 2026 | Zoom / phone | Part 1 progress (parsing, retrieval), Part 2 data preparation and training plan |
+| Nov 3, 2026 | Zoom / phone | Part 2 training results, Part 3 agent design, Part 1 Kaggle approach |
+| Nov 10, 2026 | Zoom / phone | Final evaluations, Part 1 rebuild with Claude, Part 3 runs and human marking, report plan |
+<!-- TODO: check these dates and topics against your Zoom history and call logs -->
+
