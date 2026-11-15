@@ -28,7 +28,3 @@ pyyaml==6.0.3
 matplotlib==3.10.0
 pandas==2.2.3
 pydantic==2.14.2
-
-# Needed by torchmetrics' KID (Part 2); installed from p2_bundle.zip, not on the stock Colab runtime.
-# TODO: pin from `ls /content/p2_bundle/wheels/` before tagging.
-torch-fidelity
