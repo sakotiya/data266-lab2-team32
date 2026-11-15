@@ -1,22 +1,30 @@
-# Pinned versions (pkg==x.y.z), filled in as the parts are built
+# Pinned versions, taken from what the executed notebooks printed (Python 3.13, Colab/Kaggle T4).
+# torch==2.14.1 also matches the CUDA build Colab ships (2.14.1+cu130).
 
-# Part 2 - versions are printed by the notebook on Colab; pin them from that output
-diffusers
-peft
-lpips
-torchmetrics
-torch-fidelity
-huggingface_hub
-datasets
-transformers
-torch
-torchvision
-pyyaml
-matplotlib
-pandas
+# Part 1 - notebooks/p1_rag.ipynb (Kaggle run): RAG over the three PDFs
+pymupdf==2.1.*
+chromadb==1.5.9
+sentence-transformers==5.7.0
+rank-bm25==0.2.2
+google-genai==2.12.1
+anthropic==2.8.0
 
-# Part 3 - pin from the version cell in notebooks/p3_agents.ipynb on Colab
-google-genai
-anthropic
-gradio
-pydantic
+# Part 2 - notebooks/p2_finetune.ipynb (Colab T4): LoRA fine-tuning and evaluation
+torch==2.14.1
+diffusers==0.42.1
+transformers==5.22.1
+peft==0.21.2
+datasets==4.8.5
+torchmetrics==1.9.0
+lpips==0.1.4
+
+# Part 3 - notebooks/p3_agents.ipynb (Colab T4): agents and demo app (also uses diffusers, transformers, anthropic above)
+gradio==6.31.0
+
+# Shared helpers (versions from `pip freeze` on the Colab T4 runtime)
+torchvision==0.29.1
+huggingface_hub==1.33.0
+pyyaml==6.0.3
+matplotlib==3.10.0
+pandas==2.2.3
+pydantic==2.14.2
