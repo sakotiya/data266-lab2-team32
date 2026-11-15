@@ -29,7 +29,7 @@ All required work runs on one 16 GB GPU (Kaggle/Colab T4).
 
 ## How to run each part
 
-- Part 1: _to be filled in._
+- Part 1: on Kaggle, open `notebooks/p1_kaggle.ipynb` with the competition data attached, Internet on and the secrets `ANTHROPIC_API_KEY` and `GITHUB_TOKEN`, then Run All. It clones this repo at tag `p1-v1.0`, reads the questions from `QUESTIONS_PATH` (default: the competition's `Questions.csv`) and writes `/kaggle/working/submission.csv`. See [`part1_rag/README.md`](part1_rag/README.md).
 - Part 2: on a Kaggle T4, see [`part2_diffusion/README.md`](part2_diffusion/README.md) (setup, smoke run, full run, human evaluation).
 - Part 3: on a Colab T4, open `notebooks/p3_agents.ipynb` and Restart & Run All (secrets: `GITHUB_TOKEN`, `GEMINI_API_KEY`). Demo app: last cell, or `python -m part3_agents.app.app` locally. See [`part3_agents/README.md`](part3_agents/README.md).
 
