@@ -47,7 +47,6 @@ discuss design choices and trade-offs.
 |---|---|---|
 | Oct 6, 2026 | Zoom | Kickoff: repository setup, work split across the three parts, Part 1 first milestone |
 | Oct 20, 2026 | Zoom / phone | Part 1 progress (parsing, retrieval), Part 2 data preparation and training plan |
-| Nov 3, 2026 | Zoom / phone | Part 2 training results, Part 3 agent design, Part 1 Kaggle approach |
-| Nov 10, 2026 | Zoom / phone | Final evaluations, Part 1 rebuild with Claude, Part 3 runs and human marking, report plan |
+| Nov 3, 2026 | Zoom / phone | Part 2 training results, Part 3 agent design, Part 1 Kaggle approach and rebuild, evaluation and report plan |
 <!-- TODO: check these dates and topics against your Zoom history and call logs -->
 
