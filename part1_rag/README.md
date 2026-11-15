@@ -88,4 +88,4 @@ Main runner: reads Questions.csv, processes each question, writes submission.csv
 - `data/validate_submission.py` - Kaggle submission validator
 - `eval/test_questions.csv` - 25 test questions for evaluation
 
-Notebook: `notebooks/p1_rag.ipynb`
+Notebook: `notebooks/p1_rag.ipynb`. Safety analysis (DOC3 Appendix C): [SAFETY.md](SAFETY.md).
