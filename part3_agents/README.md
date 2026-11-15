@@ -74,6 +74,10 @@ From `metrics/results_table.csv`, computed by `evaluate.summarize()` in the note
 - **Models:**
   - Claude `claude-sonnet-5-5`: planner, vision, prompt writer, critic.
   - Stable Diffusion 1.5 img2img, plus the Part 2 LoRA `sakotiya/data266-team32-naruto-run2-lora-r32`.
+    This is Part 2's run 2 (rank 32). Part 2 selects run 1 (rank 4) as its final model, by lower KID and the human
+    vote. Part 3 was built and evaluated with the rank-32 adapter, and the reported Part 3 results are for that
+    adapter. Both adapters are on Hugging Face; set `P3_LORA=sakotiya/data266-team32-naruto-run1-lora-r4` to use
+    rank 4.
   - `timbrooks/instruct-pix2pix` for edits.
   - CLIP ViT-B/32 for scoring.
 - **Inputs:** JPG/PNG of at least 64 px plus a text request.
