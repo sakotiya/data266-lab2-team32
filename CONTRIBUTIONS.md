@@ -51,5 +51,4 @@ progress, plan the next steps and discuss design choices and trade-offs.
 | Nov 8, 2026 | Zoom / phone | Part 2 training results (rank 4 vs rank 32), Part 1 parsing, indexing and hybrid search, split of answer generation, first golden set |
 | Nov 12, 2026 | Zoom / phone | Part 1 rebuild with Claude, Part 3 Colab run and independent human marking, which Part 2 LoRA Part 3 uses |
 | Nov 14, 2026 | Zoom / phone | Merging branches, Part 2 human evaluation results, golden-set rewrite and evaluation, Kaggle notebook, report and submission plan |
-<!-- TODO: check these dates and topics against your Zoom history and call logs -->
 
