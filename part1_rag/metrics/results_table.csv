@@ -4,5 +4,5 @@ status accuracy,0.96,0.96
 recall@5,0.833,0.958
 citation accuracy,0.684,0.7
 median s/question,4.11,3.69
-groundedness (mean 1-5),,4.96
-rater agreement within 1,,1.0
+groundedness (mean 1-5),,4.6
+rater agreement within 1,,0.88

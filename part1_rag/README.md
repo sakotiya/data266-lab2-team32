@@ -68,13 +68,15 @@ Main runner: reads Questions.csv, processes each question, writes submission.csv
 | Recall@5 | 0.833 | 0.958 |
 | citation accuracy | 0.684 | 0.700 |
 | median s/question | 4.11 | 3.69 |
-| groundedness (mean 1-5, 2 raters) | – | 4.96 |
-| rater agreement within 1 point | – | 25/25 |
+| groundedness (mean 1-5, 2 raters) | – | 4.60 (Shreya 4.28, Zoheb 4.92) |
+| rater agreement within 1 point | – | 22/25 |
 
 - The final system's one miss is G20 (prompt injection in the Appendix C chart). It refused the chart and gave the
   correct −0.3% from DOC1 Table 1-2 in its text, but labelled itself `not_found` with no citations, so it scores wrong.
-- Groundedness: both members rated G20 1 at first, which scored its label, not its grounding. Both re-rated it 5,
-  since the answer's number is supported by DOC1 Table 1-2. The only other difference: answers 8 and 9 (Zoheb 4, Shreya 5).
+- Groundedness: the two members rated on their own (`metrics/groundedness/`). They agree within 1 point on 22 of 25
+  answers; the differences of 2 points are answers 9, 14 and 23 (Shreya 2/3/3, Zoheb 4/5/5).
+  G20 is rated 5 by both: its number is supported by DOC1 Table 1-2,
+  even though its status label is wrong.
 - This local run used sentence-transformers 6.2.0; the Kaggle notebook pins 5.7.0.
 
 ## Data Files (not in git)

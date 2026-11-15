@@ -13,8 +13,8 @@ Members: Shreya Akotiya (GitHub `sakotiya`), Zoheb Waghu. Both members worked on
 - **Zoheb:**
   - Rebuilt the pipeline: figure crops with vision-model transcriptions, hybrid retrieval with exact figure lookup, multimodal JSON answers with Claude, and per-conversation memory (public score 0.916).
   - The Kaggle notebook that loads the code from a `repo.bundle` dataset (`notebooks/p1_rag.ipynb`).
-  - Ran the golden-set evaluation. <!-- TODO: confirm once the run is pushed -->
-- **Both:** groundedness ratings of the 25 final answers. <!-- TODO: confirm once rated -->
+  - Ran the golden-set evaluation (commit 2dd936d) and the Appendix C safety probe (`SAFETY.md`).
+- **Both:** groundedness ratings of the 25 final answers, each rated independently.
 
 ## Part 2 — Diffusion fine-tuning (LoRA)
 - **Shreya (lead):**
