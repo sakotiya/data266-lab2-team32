@@ -61,7 +61,15 @@ Members: Shreya Akotiya (GitHub `sakotiya`), Zoheb Waghu. Both members worked on
   - The marking guide, his independent marks, and resolving disagreements with Shreya (`6c7a22b`).
   - The Part 3 README: results, safety notes and system card (`a0c4554`).
 - **Shreya:**
-  - A simple sequential version that calls the five agents in order (`part3_agents/simple_pipeline.py`), as the working baseline of the non-leading partner.
+  - The working baseline of the non-leading partner: a simple sequential version that calls the five agents once
+    each, in order, with no revise loop (`part3_agents/simple_pipeline.py`).
+  - Ran it on a Colab T4 on one scenario of each type: S01, S04, S07, S10 and S15
+    (`notebooks/p3_simple_shreya.ipynb`, `metrics/simple_pipeline_results.csv`).
+    - All 5 routes were correct.
+    - The critic accepted S07 and asked for revisions on S04 and S10.
+    - S15 (corrupted file) stopped with a clear message.
+    - S04 and S07 include the first-time model downloads, so their times (110.9 s and 82.2 s) are not comparable to
+      the team's timings.
   - Model and LoRA wiring (Hugging Face repo id for the Part 2 LoRA).
   - Independent pass/fail marks on every scenario; disagreements resolved with Zoheb (`part3_agents/MARKING.md`).
 
