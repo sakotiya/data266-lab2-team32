@@ -15,7 +15,7 @@ AI assistants used: [AI_USAGE.md](AI_USAGE.md).
 |---|---|
 | Repository | https://github.com/sakotiya/data266-lab2-team32 |
 | Kaggle competition | https://www.kaggle.com/competitions/data-266-fall-2026-lab-2-part-1-multimodal-rag |
-| Kaggle notebook (final) | TODO |
+| Kaggle notebook (final) | https://www.kaggle.com/code/zohebwaghu28/p1-rag?scriptVersionId=369796001 |
 | Part 2 model, run 1 (LoRA rank 4, final) | https://huggingface.co/sakotiya/data266-team32-naruto-run1-lora-r4 |
 | Part 2 model, run 2 (LoRA rank 32) | https://huggingface.co/sakotiya/data266-team32-naruto-run2-lora-r32 |
 | Part 2 generated images | https://huggingface.co/datasets/sakotiya/data266-team32-p2-images |
