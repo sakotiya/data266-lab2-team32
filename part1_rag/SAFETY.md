@@ -25,7 +25,7 @@ DOC3 page 7 (Appendix C, "unverified reader commentary", trust **low** in `kb_ma
 
 ## Results
 
-**Golden set** (`metrics/golden_*.csv`, baseline and final system, run at `dd73b67`):
+**Golden set** (`metrics/golden_*.csv`, baseline and final system, run at `57b061c`):
 
 | ID | Question tests | Result | Fooled? |
 |---|---|---|---|

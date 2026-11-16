@@ -11,21 +11,21 @@ Members: Shreya Akotiya (GitHub `sakotiya`), Zoheb Waghu. Both members worked on
   - The golden set: first version on Nov 8; rewritten on Nov 14 because most of it overlapped with `Questions.csv`.
   - The golden-set evaluation: `src/evaluate.py`, `notebooks/p1_eval.ipynb`, and the groundedness rating sheet.
 - **Zoheb:**
-  - Rebuilt the pipeline (`de1b417`):
+  - Rebuilt the pipeline (`c2956fe`):
     - figure and table crops with vision-model transcriptions;
     - hybrid retrieval with exact figure lookup and corrections kept next to originals;
     - multimodal JSON answers with Claude `claude-sonnet-5-5`, with a post-check of labels and citations;
     - per-conversation memory.
 
     Public score 0.916, team rank 7 on the public leaderboard.
-  - Moved answering from Gemini to Claude and kept Gemini only for the cached figure transcriptions (`763581c`).
+  - Moved answering from Gemini to Claude and kept Gemini only for the cached figure transcriptions (`d03e000`).
   - The Colab and Kaggle notebooks:
     - code loaded from an uploaded `repo.bundle` instead of a GitHub token;
     - Kaggle secrets and competition input;
-    - the executed Kaggle run at tag `p1-v1.0`, with 40 valid rows and a median of 3.26 s/question (`56aa360`).
-  - Ran the golden-set evaluation, baseline vs final (`2dd936d`).
+    - the executed Kaggle run at tag `p1-v1.0`, with 40 valid rows and a median of 3.26 s/question (`f4c857a`).
+  - Ran the golden-set evaluation, baseline vs final (`403065d`).
   - The Part 1 safety analysis of DOC3 Appendix C (`part1_rag/SAFETY.md`), plus a probe that forces Appendix C into
-    the evidence: 0 of 12 answers fooled (`src/probe_appendix_c.py`, `ce7466d`).
+    the evidence: 0 of 12 answers fooled (`src/probe_appendix_c.py`, `ef1ea4b`).
 - **Both:** groundedness ratings of the 25 final answers, each rated independently.
 
 ## Part 2 — Diffusion fine-tuning (LoRA)
@@ -54,12 +54,12 @@ Members: Shreya Akotiya (GitHub `sakotiya`), Zoheb Waghu. Both members worked on
     - the critique loop allows at most 2 revisions, and every request writes a JSON trace.
   - Failure handling, the Gradio app, and an offline check of the orchestration (`test_pipeline.py`).
   - Switched the agents to Claude `claude-sonnet-5-5`, the same model as Part 1, and set the default LoRA to Part 2 run 2 (rank 32) from
-    Hugging Face (`875fa22`).
+    Hugging Face (`360fd71`).
   - The Colab T4 runs: 15 scenarios × 2 conditions plus 10 red-team cases, with traces, the results table and the
-    executed notebook. Run 1 is `2f36a12`; the clean run 2 is `cc51c81` and `14b1b3c`.
+    executed notebook. Run 1 is `eaf8232`; the clean run 2 is `3d209ef` and `02a03d0`.
   - Output images on Hugging Face (`ZohebW/data266-team32-p3-outputs`).
-  - The marking guide, his independent marks, and resolving disagreements with Shreya (`6c7a22b`).
-  - The Part 3 README: results, safety notes and system card (`a0c4554`).
+  - The marking guide, his independent marks, and resolving disagreements with Shreya (`550dc08`).
+  - The Part 3 README: results, safety notes and system card (`1d05e37`).
 - **Shreya:**
   - The working baseline of the non-leading partner: a simple sequential version that calls the five agents once
     each, in order, with no revise loop (`part3_agents/simple_pipeline.py`).

@@ -27,7 +27,7 @@ Settings: `ANTHROPIC_API_KEY`, `P3_VLM` (default `claude-sonnet-5-5`, same as Pa
 
 Offline check of the orchestration and metrics (no API or GPU needed): `python -m part3_agents.test_pipeline`.
 
-## Results (run 2, Colab T4, commit `18e9f8a`)
+## Results (run 2, Colab T4, commit `4b09535`)
 
 Each of the 15 scenarios was run twice: without the critique loop (baseline) and with it (final). Both team members marked every output on their own, then agreed on a final mark where they differed ([MARKING.md](MARKING.md), `metrics/human_marks.csv`). Images: [HF dataset](https://huggingface.co/datasets/ZohebW/data266-team32-p3-outputs).
 
@@ -49,7 +49,7 @@ From `metrics/results_table.csv`, computed by `evaluate.summarize()` in the note
 
   The loop returns the "best" attempt, which was often worse than the single-shot baseline.
 - **The cost:** 13 extra generations. Image requests went from a median of about 15 s to about 37 s (`scenario_results.csv`, by type).
-- **The critic is not deterministic.** Sonnet 5.5 takes no temperature setting, and an earlier full run (`c476f31`) gave different critic decisions on 2 of the 9 image scenarios (S05, S07), so per-scenario critic results are noisy.
+- **The critic is not deterministic.** Sonnet 5.5 takes no temperature setting, and an earlier full run (`53ff2ed`) gave different critic decisions on 2 of the 9 image scenarios (S05, S07), so per-scenario critic results are noisy.
 - **S06 (pencil sketch) failed in both conditions.** img2img at strength 0.7 keeps the colours, so the output never became a grey pencil drawing.
 
 ## Safety notes

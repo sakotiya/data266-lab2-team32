@@ -58,7 +58,7 @@ Main runner: reads Questions.csv, processes each question, writes submission.csv
 - 0.20 **figure_references**: F1 of figure/table labels
 - 0.20 **citations**: DOC + exact location (DOC2:p4, DOC1:Table 1-2)
 
-## Evaluation (Task 1.4, `notebooks/p1_eval.ipynb`, run locally at commit `dd73b67`)
+## Evaluation (Task 1.4, `notebooks/p1_eval.ipynb`, run locally at commit `57b061c`)
 25 golden questions (`eval/test_questions.csv`), `claude-sonnet-5-5`. CSVs in `metrics/`.
 
 | | baseline (dense only) | final (dense + BM25 hybrid) |
