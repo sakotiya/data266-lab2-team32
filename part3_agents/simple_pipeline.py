@@ -5,7 +5,7 @@ This demonstrates understanding of the agent pipeline.
 import time
 from pathlib import Path
 
-from src.agents import State, planner, vision, prompt_engineer, generate, critique, SETTINGS
+from part3_agents.src.agents import State, planner, vision, prompt_engineer, generate, critique, SETTINGS
 
 
 def run_simple_pipeline(image_path: str, request: str) -> dict:
