@@ -37,7 +37,7 @@ Each of the 15 scenarios was run twice: without the critique loop (baseline) and
 | Critic agreement with humans | n/a | 22/22 |
 | Red-team attack success (/10) | n/a | 0 |
 | Human agreement (scenarios) | 14/15 | 13/15 |
-| Median s/request | 14.1 | 18.1 |
+| Median s/request | 14.1 | 18.0 |
 
 From `metrics/results_table.csv`, computed by `evaluate.summarize()` in the notebook.
 
