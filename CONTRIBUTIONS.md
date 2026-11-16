@@ -11,9 +11,21 @@ Members: Shreya Akotiya (GitHub `sakotiya`), Zoheb Waghu. Both members worked on
   - The golden set: first version on Nov 8; rewritten on Nov 14 because most of it overlapped with `Questions.csv`.
   - The golden-set evaluation: `src/evaluate.py`, `notebooks/p1_eval.ipynb`, and the groundedness rating sheet.
 - **Zoheb:**
-  - Rebuilt the pipeline: figure crops with vision-model transcriptions, hybrid retrieval with exact figure lookup, multimodal JSON answers with Claude, and per-conversation memory (public score 0.916).
-  - The Kaggle notebook that loads the code from a `repo.bundle` dataset (`notebooks/p1_rag.ipynb`).
-  - Ran the golden-set evaluation (commit 2dd936d) and the Appendix C safety probe (`SAFETY.md`).
+  - Rebuilt the pipeline (`de1b417`):
+    - figure and table crops with vision-model transcriptions;
+    - hybrid retrieval with exact figure lookup and corrections kept next to originals;
+    - multimodal JSON answers with Claude `claude-sonnet-5-5`, with a post-check of labels and citations;
+    - per-conversation memory.
+
+    Public score 0.916, team rank 7 on the public leaderboard.
+  - Moved answering from Gemini to Claude and kept Gemini only for the cached figure transcriptions (`763581c`).
+  - The Colab and Kaggle notebooks:
+    - code loaded from an uploaded `repo.bundle` instead of a GitHub token;
+    - Kaggle secrets and competition input;
+    - the executed Kaggle run at tag `p1-v1.0`, with 40 valid rows and a median of 3.26 s/question (`56aa360`).
+  - Ran the golden-set evaluation, baseline vs final (`2dd936d`).
+  - The Part 1 safety analysis of DOC3 Appendix C (`part1_rag/SAFETY.md`), plus a probe that forces Appendix C into
+    the evidence: 0 of 12 answers fooled (`src/probe_appendix_c.py`, `ce7466d`).
 - **Both:** groundedness ratings of the 25 final answers, each rated independently.
 
 ## Part 2 — Diffusion fine-tuning (LoRA)
@@ -24,15 +36,30 @@ Members: Shreya Akotiya (GitHub `sakotiya`), Zoheb Waghu. Both members worked on
   - KID, CLIP, LPIPS and the memorization check.
   - The model card and the uploads to Hugging Face.
   - The executed notebook.
-- **Zoheb:** <!-- TODO: the brief requires the non-leading partner to implement and run the complete pipeline at least as a working baseline. Describe Zoheb's baseline run (where it is: notebook or HF link). It is not in this repository yet. -->
+- **Zoheb (baseline, non-leading partner):**
+  - Ran the complete Part 2 pipeline end to end on a Colab T4 as a working baseline (`notebooks/p2_baseline_zoheb.ipynb`):
+    - data cleaning and the same split;
+    - a LoRA rank 4 run for 500 steps;
+    - generation for the 20 fixed prompts;
+    - KID, CLIP score and LPIPS against the base model.
+  - Results are in `part2_diffusion/baseline_zoheb/`. <!-- TODO: add the commit and the KID/CLIP numbers once the zoheb-p2-baseline branch is merged -->
 - **Both:** human evaluation raters, with Punit Chittora as the rater from outside the team (25 blinded pairs).
 
 ## Part 3 — Multimodal multi-agent system
 - **Zoheb (lead):**
-  - The five agents, the shared typed state, and orchestration with the critique loop (at most 2 revisions) and JSON traces.
-  - Failure handling and the Gradio app.
-  - The 15 scenarios and 10 red-team cases (committed before running).
-  - The Colab T4 runs, the results table, the safety notes and the system card.
+  - The 15 test scenarios and 10 red-team cases with rubrics and test images, committed before running (`5189062`).
+  - The five agents, with orchestration and a critique loop (`1bdd2b2`):
+    - the agents are Planner, Vision, Prompt Engineering, Image Generation and Critique;
+    - they share a typed `State`;
+    - the critique loop allows at most 2 revisions, and every request writes a JSON trace.
+  - Failure handling, the Gradio app, and an offline check of the orchestration (`test_pipeline.py`).
+  - Switched the agents to Claude `claude-sonnet-5-5`, the same model as Part 1, and set the default LoRA to Part 2 run 2 (rank 32) from
+    Hugging Face (`875fa22`).
+  - The Colab T4 runs: 15 scenarios × 2 conditions plus 10 red-team cases, with traces, the results table and the
+    executed notebook. Run 1 is `2f36a12`; the clean run 2 is `cc51c81` and `14b1b3c`.
+  - Output images on Hugging Face (`ZohebW/data266-team32-p3-outputs`).
+  - The marking guide, his independent marks, and resolving disagreements with Shreya (`6c7a22b`).
+  - The Part 3 README: results, safety notes and system card (`a0c4554`).
 - **Shreya:**
   - A simple sequential version that calls the five agents in order (`part3_agents/simple_pipeline.py`), as the working baseline of the non-leading partner.
   - Model and LoRA wiring (Hugging Face repo id for the Part 2 LoRA).
