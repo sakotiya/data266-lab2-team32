@@ -3,7 +3,7 @@
 Multimodal RAG · Diffusion fine-tuning with LoRA · Multimodal multi-agent system
 
 **Members:** Shreya Akotiya (GitHub `sakotiya`) · Zoheb Waghu (Hugging Face `ZohebW`)
-**Final report:** [report/Lab2_Report_IEEE_final.pdf](report/Lab2_Report_IEEE_final.pdf)
+**Final report:** IEEE PDF, submitted on Canvas (`Report.pdf` in the submission zip)
 
 Both members worked on all three parts. Zoheb built Part 1's final pipeline and led Part 3; Shreya led Part 2. In
 Parts 2 and 3, the partner who did not lead also ran the complete pipeline as a working baseline. Every part has:
@@ -148,8 +148,6 @@ data266-lab2-team32/
 ├── AI_USAGE.md               AI coding assistants used, and for what
 ├── COMMIT_MAP.md             old → new commit IDs (history rewritten on 2026-11-16)
 ├── requirements.txt          pinned versions
-├── report/
-│   └── Lab2_Report_IEEE_final.pdf
 ├── notebooks/                executed notebooks (outputs saved)
 │   ├── p1_rag.ipynb          Part 1 Kaggle submission notebook
 │   ├── p1_eval.ipynb         Part 1 golden-set evaluation
@@ -190,7 +188,7 @@ data266-lab2-team32/
 
 | Looking for | Where |
 |---|---|
-| Final report | `report/Lab2_Report_IEEE_final.pdf` |
+| Final report | Canvas submission (`Report.pdf`) |
 | Results table of each part | `part1_rag/metrics/results_table.csv` · `part2_diffusion/metrics/results_table.csv` · `part3_agents/metrics/results_table.csv` |
 | Test sets written before tuning | `part1_rag/eval/test_questions.csv` · `part2_diffusion/eval/prompts.csv` · `part3_agents/eval/scenarios.csv`, `redteam.csv` |
 | Human evaluation | Part 1: `part1_rag/metrics/groundedness/` · Part 2: `part2_diffusion/metrics/human_eval/` · Part 3: `part3_agents/metrics/human_marks.csv`, `MARKING.md` |
@@ -210,7 +208,7 @@ data266-lab2-team32/
 | Part 2 model, run 1 (LoRA rank 4, final) | https://huggingface.co/sakotiya/data266-team32-naruto-run1-lora-r4 |
 | Part 2 model, run 2 (LoRA rank 32) | https://huggingface.co/sakotiya/data266-team32-naruto-run2-lora-r32 |
 | Part 2 generated images | https://huggingface.co/datasets/sakotiya/data266-team32-p2-images |
-| Part 3 output images | https://huggingface.co/datasets/ZohebW/data266-team32-p3-outputs |
+| Part 3 inputs and output images | https://huggingface.co/datasets/ZohebW/data266-team32-p3-outputs (`test_images/`, `outputs/images/`) |
 
 Tags: `p1-v1.0`, `p2-v1.0`, `p3-v1.0`.
 
