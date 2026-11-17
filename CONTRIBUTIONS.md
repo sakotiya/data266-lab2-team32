@@ -42,7 +42,15 @@ Members: Shreya Akotiya (GitHub `sakotiya`), Zoheb Waghu. Both members worked on
     - a LoRA rank 4 run for 500 steps;
     - generation for the 20 fixed prompts;
     - KID, CLIP score and LPIPS against the base model.
-  - Results are in `part2_diffusion/baseline_zoheb/`. <!-- TODO: add the commit and the KID/CLIP numbers once the zoheb-p2-baseline branch is merged -->
+  - Results, from the executed notebook (commit `aefe087`, run from tag `p2-v1.0`):
+    - KID 0.070 ± 0.023, against 0.124 ± 0.018 for the base model;
+    - CLIP score 30.71 (base 31.88);
+    - LPIPS between seeds 0.823 (base 0.806);
+    - 797,184 trainable parameters, 14.3 training minutes (0.238 GPU-hours), 5.57 GB peak GPU memory;
+    - 1 of 80 images flagged by the NSFW filter.
+
+    With a third of the steps, the baseline already lowers KID against the base model. The final rank-4 run
+    (1,500 steps) reaches 0.053.
 - **Both:** human evaluation raters, with Punit Chittora as the rater from outside the team (25 blinded pairs).
 
 ## Part 3 — Multimodal multi-agent system

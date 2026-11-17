@@ -95,7 +95,7 @@ Every number below comes from the executed notebooks and the CSVs in each part's
 - **Final model:** run 1 (rank 4), chosen for lower KID and the human style vote. Both LoRAs, with model cards, and
   the generated images are on Hugging Face.
 - **Baseline by the non-leading partner:** `notebooks/p2_baseline_zoheb.ipynb` runs the same pipeline with rank 4
-  and 500 steps. TODO: results once merged.
+  and 500 steps (Colab T4, 14.3 min). KID 0.070 ± 0.023 (base 0.124, final run 0.053); CLIP score 30.71; LPIPS 0.823.
 
 ### Part 3 — Multi-agent system ([part3_agents/README.md](part3_agents/README.md))
 - **Agents:** Planner, Vision, Prompt Engineering, Image Generation and Critique share one typed `State`. The
